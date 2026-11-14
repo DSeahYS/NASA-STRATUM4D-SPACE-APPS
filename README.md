@@ -273,8 +273,8 @@ Clicking **any coordinate on Earth** outside the 30 pre-compiled catchments laun
 
 ### 1. Clone & Install Dependencies
 ```bash
-git clone https://github.com/DSeahYS/Stratum-4D-Test.git
-cd Stratum-4D-Test
+git clone https://github.com/DSeahYS/NASA-STRATUM4D-SPACE-APPS.git
+cd NASA-STRATUM4D-SPACE-APPS
 npm install
 ```
 
