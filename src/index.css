@@ -1,0 +1,304 @@
+@import "tailwindcss";
+
+/*
+ * Stratum-4D design tokens ("Analyst workbench").
+ * Chrome is neutral graphite with ONE light accent. Saturated colour is reserved for data.
+ * Use these utilities (bg-canvas, text-ink-2, border-line, text-caption, ...) instead of hex
+ * literals or arbitrary px sizes. Nothing functional goes below text-micro (11px).
+ */
+@theme {
+  --font-sans: "Inter Variable", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, monospace;
+
+  /* Surfaces and lines */
+  --color-canvas: #0d1013;
+  --color-surface-1: #15191c;
+  --color-surface-2: #1e2226;
+  --color-line: #32363a;
+  --color-line-strong: #494e52;
+
+  /* Text tiers (all >= 5.6:1 on every surface) */
+  --color-ink-1: #eceff2;
+  --color-ink-2: #b9bec4;
+  --color-ink-3: #9399a0;
+
+  /* The one accent, focus and semantic states */
+  --color-accent: #bbd2de;
+  --color-accent-ink: #0d1013;
+  --color-focus: #c4e4f4;
+  --color-ok: #59c886;
+  --color-warn: #eab532;
+  --color-danger: #f75d59;
+
+  /* Data only: diverging water-storage trend, drying (dry) to wetting (wet) */
+  --color-dry-3: #ff6557;
+  --color-dry-2: #cd6151;
+  --color-dry-1: #966258;
+  --color-trend-zero: #494e52;
+  --color-wet-1: #517791;
+  --color-wet-2: #478cc4;
+  --color-wet-3: #4ea4f1;
+
+  /* Type scale: size / line height. 11px is the hard floor. */
+  --text-display: 24px;
+  --text-display--line-height: 32px;
+  --text-title: 18px;
+  --text-title--line-height: 24px;
+  --text-body: 14px;
+  --text-body--line-height: 20px;
+  --text-label: 13px;
+  --text-label--line-height: 16px;
+  --text-caption: 12px;
+  --text-caption--line-height: 16px;
+  --text-micro: 11px;
+  --text-micro--line-height: 14px;
+}
+
+:root {
+  /* Legacy names, kept so untouched components keep rendering. Prefer the tokens above. */
+  --color-abyss: #0d1013;
+  --color-panel: #15191c;
+  --color-panel-elevated: #1e2226;
+  --color-border: #32363a;
+  --color-border-subtle: #32363a;
+  --color-border-highlight: #494e52;
+  --color-nasa-orange: #FF4D30;
+  --color-crimson: #EF4444;
+  --color-amber: #F59E0B;
+  --color-emerald: #10B981;
+  --color-slate-muted: #9399a0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--color-canvas);
+  color: var(--color-ink-1);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 20px;
+  overflow: hidden;
+}
+
+#root {
+  width: 100vw;
+  height: 100vh;
+}
+
+::selection {
+  background: var(--color-accent);
+  color: var(--color-accent-ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+/* Dragging the globe must not select page text; everything else stays selectable. */
+canvas {
+  user-select: none;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-canvas);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-line);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-line-strong);
+}
+
+@layer components {
+  /* Numbers that line up in columns */
+  .tnum {
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Buttons: three roles only. One .btn-primary per screen. */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    height: 36px;
+    padding: 0 12px;
+    border-radius: 6px;
+    border: 1px solid transparent;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 500;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background-color 120ms ease-out, border-color 120ms ease-out, color 120ms ease-out;
+  }
+  .btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  .btn-sm {
+    height: 28px;
+    padding: 0 10px;
+    font-size: 13px;
+  }
+  .btn-primary {
+    background: var(--color-accent);
+    color: var(--color-accent-ink);
+    font-weight: 600;
+  }
+  .btn-primary:hover {
+    background: #cfe1ea;
+  }
+  .btn-secondary {
+    background: var(--color-surface-2);
+    border-color: var(--color-line);
+    color: var(--color-ink-1);
+  }
+  .btn-secondary:hover {
+    border-color: var(--color-line-strong);
+  }
+  .btn-ghost {
+    background: transparent;
+    color: var(--color-ink-2);
+  }
+  .btn-ghost:hover {
+    background: var(--color-surface-2);
+    color: var(--color-ink-1);
+  }
+
+  /* Segmented control: a .seg wrapper holding .seg-item buttons; mark the active one aria-pressed="true" */
+  .seg {
+    display: inline-flex;
+    gap: 2px;
+    padding: 2px;
+    background: var(--color-canvas);
+    border: 1px solid var(--color-line);
+    border-radius: 6px;
+  }
+  .seg-item {
+    height: 30px;
+    padding: 0 12px;
+    border: 0;
+    border-radius: 4px;
+    background: transparent;
+    color: var(--color-ink-2);
+    font-size: 14px;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+  .seg-item:hover {
+    color: var(--color-ink-1);
+  }
+  .seg-item[aria-pressed="true"],
+  .seg-item[aria-selected="true"] {
+    background: var(--color-surface-2);
+    color: var(--color-ink-1);
+    font-weight: 500;
+  }
+
+  /* Text input and select */
+  .field {
+    height: 36px;
+    padding: 0 10px;
+    background: var(--color-canvas);
+    color: var(--color-ink-1);
+    border: 1px solid var(--color-line);
+    border-radius: 6px;
+    font-size: 14px;
+  }
+  .field::placeholder {
+    color: var(--color-ink-3);
+  }
+
+  /* Filter chip */
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    height: 28px;
+    padding: 0 10px;
+    border: 1px solid var(--color-line);
+    border-radius: 14px;
+    background: transparent;
+    color: var(--color-ink-2);
+    font-size: 13px;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+  .chip[aria-pressed="true"] {
+    background: var(--color-surface-2);
+    border-color: var(--color-line-strong);
+    color: var(--color-ink-1);
+    font-weight: 500;
+  }
+
+  /* Small status tag, e.g. "Modelled proxy" or "Observed" */
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    height: 20px;
+    padding: 0 6px;
+    border: 1px solid var(--color-line-strong);
+    border-radius: 4px;
+    color: var(--color-ink-2);
+    font-size: 12px;
+    line-height: 16px;
+    white-space: nowrap;
+  }
+  .tag-warn {
+    border-color: var(--color-warn);
+    color: var(--color-warn);
+  }
+
+  /* Popover and menu surface */
+  .popover {
+    background: var(--color-surface-2);
+    border: 1px solid var(--color-line);
+    border-radius: 8px;
+    box-shadow: 0 10px 28px rgb(0 0 0 / 0.5);
+  }
+  .menu-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    height: 36px;
+    padding: 0 10px;
+    border: 0;
+    border-radius: 4px;
+    background: transparent;
+    color: var(--color-ink-1);
+    font-size: 14px;
+    text-align: left;
+    cursor: pointer;
+  }
+  .menu-item:hover {
+    background: var(--color-surface-1);
+  }
+
+  /* Hatched swatch for "not significant" */
+  .hatch {
+    background: repeating-linear-gradient(45deg, var(--color-ink-3) 0 1.5px, var(--color-surface-2) 1.5px 5px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

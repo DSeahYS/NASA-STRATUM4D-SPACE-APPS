@@ -1,0 +1,16 @@
+{
+  "output": {
+    "filePath": "repomix-output.md",
+    "style": "markdown",
+    "splitOutput": 350000
+  },
+  "ignore": {
+    "useGitignore": true,
+    "customPatterns": [
+      "package-lock.json",
+      "public/data/basins.geojson",
+      "public/data/wind.json",
+      "public/textures/**"
+    ]
+  }
+}

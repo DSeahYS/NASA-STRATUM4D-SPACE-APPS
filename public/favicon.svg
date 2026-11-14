@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <radialGradient id="globeGrad" cx="35%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#38BDF8" />
+      <stop offset="60%" stop-color="#0284C7" />
+      <stop offset="100%" stop-color="#082F49" />
+    </radialGradient>
+    <linearGradient id="orbitGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#34D399" />
+      <stop offset="100%" stop-color="#38BDF8" />
+    </linearGradient>
+  </defs>
+
+  <!-- Deep Space Disc -->
+  <circle cx="32" cy="32" r="30" fill="#0B0D13" stroke="#24262E" stroke-width="2"/>
+
+  <!-- Globe Base -->
+  <circle cx="32" cy="32" r="18" fill="url(#globeGrad)" />
+  
+  <!-- Latitude / Longitude Curvature Grids -->
+  <ellipse cx="32" cy="32" rx="18" ry="7" fill="none" stroke="#BAE6FD" stroke-width="0.8" stroke-dasharray="2 1.5" opacity="0.6"/>
+  <ellipse cx="32" cy="32" rx="7" ry="18" fill="none" stroke="#BAE6FD" stroke-width="0.8" stroke-dasharray="2 1.5" opacity="0.6"/>
+  <path d="M14 32 H50" stroke="#BAE6FD" stroke-width="0.8" opacity="0.5"/>
+  <path d="M32 14 V50" stroke="#BAE6FD" stroke-width="0.8" opacity="0.5"/>
+
+  <!-- Gravimetric Anomaly Core -->
+  <circle cx="35" cy="30" r="3.5" fill="#34D399" opacity="0.9" />
+  <circle cx="35" cy="30" r="6" stroke="#34D399" stroke-width="1" stroke-dasharray="1.5 1.5" opacity="0.8" />
+
+  <!-- Inclined Satellite Orbit Ring -->
+  <ellipse cx="32" cy="32" rx="27" ry="10" transform="rotate(-28 32 32)" fill="none" stroke="url(#orbitGrad)" stroke-width="1.8" stroke-linecap="round"/>
+
+  <!-- Satellite Node -->
+  <circle cx="53" cy="21" r="2.8" fill="#F8FAFC" stroke="#0284C7" stroke-width="1.2"/>
+  <path d="M50.5 21 H47.5 M55.5 21 H58.5 M53 18.5 V16 M53 23.5 V26" stroke="#F8FAFC" stroke-width="0.8"/>
+</svg>

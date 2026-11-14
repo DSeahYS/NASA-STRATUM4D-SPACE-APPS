@@ -1,0 +1,364 @@
+{
+  "pipeline_version": "2.2-multivariable-causal-triangulation",
+  "dataset": "GRACE-FO MASCON CRI RL06.1M + GPM IMERG + MERRA-2 + GLDAS + SWOT + MODIS",
+  "variable": "Liquid Water Equivalent Thickness (lwe_thickness)",
+  "unit": "cm/year",
+  "temporal_range": [
+    "2002-04-01",
+    "2024-02-01"
+  ],
+  "epochs_processed": 132,
+  "basins_total": 30,
+  "basins_significant": 27,
+  "basins_inconclusive": 3,
+  "significance_rate_pct": 90.0,
+  "fdr_threshold": 0.05,
+  "methodology": {
+    "decomposition": "STL LOESS 12-Month Robust Seasonal-Trend Decomposition",
+    "prewhitening": "Yue-Pilon (2002) Trend-Preserving Pre-Whitening",
+    "trend_test": "Hamed-Rao (1998) Modified Mann-Kendall with Variance Inflation Var*(S)",
+    "slope_estimator": "Theil-Sen Robust Non-Parametric Median Slope with 95% Sen's / Bootstrap CI",
+    "fdr_control": "Benjamini-Hochberg (1995) False Discovery Rate Control",
+    "coupling_metric": "Inverse Correlation r(A, B) + Opposing Trend Divergence D_AB",
+    "causal_attribution": "Empirical Triangulation of TWS slope vs Precipitation slope vs Surface Temperature"
+  },
+  "triangulation_framework": {
+    "atmospheric": "TEMPO / AIRS Vapor Pressure Deficit (VPD) + GFS Moisture Divergence",
+    "hydrological": "GRACE-FO Mascon LWE + SWOT KaRIn Water Surface Elevation + GPM IMERG",
+    "thermal": "MERRA-2 2-Meter Surface Air Temperature (T2M)",
+    "biospheric": "MODIS/VIIRS 16-Day NDVI Canopy Dynamics + GLDAS Root-Zone Soil Moisture",
+    "geomechanical": "InSAR Vertical Subsidence + TU Delft Inelastic Skeletal Storativity (S_sk*)"
+  },
+  "dipoles_detected": [
+    {
+      "system": "Sierra Nevada Orographic Dipole",
+      "basin_a": "BASIN_CALIFORNIA_CV",
+      "basin_b": "BASIN_GREAT_BASIN_EAST",
+      "upwind": "BASIN_CALIFORNIA_CV",
+      "downwind": "BASIN_GREAT_BASIN_EAST",
+      "inverse_correlation_r": 0.92,
+      "opposing_divergence": 0.9711,
+      "dipole_strength": 13.9,
+      "mechanism": "Pacific Atmospheric River blocking vs. Lee-side rain shadow desiccation"
+    },
+    {
+      "system": "South American Monsoon Dipole",
+      "basin_a": "BASIN_AMAZON_LOWER",
+      "basin_b": "BASIN_SAO_FRANCISCO",
+      "upwind": "BASIN_AMAZON_LOWER",
+      "downwind": "BASIN_SAO_FRANCISCO",
+      "inverse_correlation_r": 0.2241,
+      "opposing_divergence": 1.8516,
+      "dipole_strength": 26.5,
+      "mechanism": "South Atlantic Convergence Zone (SACZ) moisture deflection and convective dipole"
+    },
+    {
+      "system": "East Asian Monsoon Dipole",
+      "basin_a": "BASIN_YANGTZE",
+      "basin_b": "BASIN_YELLOW_RIVER",
+      "upwind": "BASIN_YANGTZE",
+      "downwind": "BASIN_YELLOW_RIVER",
+      "inverse_correlation_r": -0.09,
+      "opposing_divergence": 1.0945,
+      "dipole_strength": 20.5,
+      "mechanism": "Western Pacific Subtropical High stalling and Meiyu front latitudinal entrapment"
+    },
+    {
+      "system": "Himalayan Orographic Monsoon Dipole",
+      "basin_a": "BASIN_INDUS",
+      "basin_b": "BASIN_GANGES_BRAHMAPUTRA",
+      "upwind": "BASIN_INDUS",
+      "downwind": "BASIN_GANGES_BRAHMAPUTRA",
+      "inverse_correlation_r": -0.122,
+      "opposing_divergence": 0.173,
+      "dipole_strength": 8.2,
+      "mechanism": "Orographically guided monsoon depression tracking vs. intensive transboundary tubewell pumping"
+    },
+    {
+      "system": "Caspian-Tibet Water Reversal",
+      "basin_a": "BASIN_CASPIAN",
+      "basin_b": "BASIN_TIBETAN_PLATEAU",
+      "upwind": "BASIN_CASPIAN",
+      "downwind": "BASIN_TIBETAN_PLATEAU",
+      "inverse_correlation_r": 0.1956,
+      "opposing_divergence": 4.9519,
+      "dipole_strength": 50,
+      "mechanism": "Volga upstream impoundment and evaporative drawdown vs. alpine glacier meltwater and endorheic lake expansion"
+    },
+    {
+      "system": "African Hydrological Seesaw",
+      "basin_a": "BASIN_CONGO",
+      "basin_b": "BASIN_SAHEL",
+      "upwind": "BASIN_CONGO",
+      "downwind": "BASIN_SAHEL",
+      "inverse_correlation_r": 0.5362,
+      "opposing_divergence": 0.1298,
+      "dipole_strength": 1.9,
+      "mechanism": "ITCZ meridional migration modulating West African Monsoon penetration against rainforest buffer equilibrium"
+    },
+    {
+      "system": "Indian Ocean Dipole (IOD)",
+      "basin_a": "BASIN_IOD_WEST",
+      "basin_b": "BASIN_IOD_EAST",
+      "upwind": "BASIN_IOD_WEST",
+      "downwind": "BASIN_IOD_EAST",
+      "inverse_correlation_r": 0.0399,
+      "opposing_divergence": 0.6998,
+      "dipole_strength": 10,
+      "mechanism": "Equatorial Indian Ocean zonal sea-surface temperature gradient modulating convective rainfall divergence"
+    },
+    {
+      "system": "Antarctic Cryosphere Redistribution",
+      "basin_a": "BASIN_WEST_ANTARCTICA",
+      "basin_b": "BASIN_EAST_ANTARCTICA",
+      "upwind": "BASIN_WEST_ANTARCTICA",
+      "downwind": "BASIN_EAST_ANTARCTICA",
+      "inverse_correlation_r": -0.4974,
+      "opposing_divergence": 22.0184,
+      "dipole_strength": 73.2,
+      "mechanism": "Circumpolar Deep Water basal melting of marine-terminating ice shelves vs. orographic snowfall accumulation"
+    }
+  ],
+  "regime_shifts_detected": [
+    {
+      "basin_id": "BASIN_CALIFORNIA_CV",
+      "name": "California Central Valley Basin",
+      "breakpoint_year": 2013,
+      "pettitt_p": 0.0001,
+      "optimal_driver": "IOD_DMI",
+      "driver_r": 0.3253
+    },
+    {
+      "basin_id": "BASIN_GREAT_BASIN_EAST",
+      "name": "Great Basin / Lahontan Basin",
+      "breakpoint_year": 2013,
+      "pettitt_p": 0.0001,
+      "optimal_driver": "IOD_DMI",
+      "driver_r": 0.3453
+    },
+    {
+      "basin_id": "BASIN_AMAZON_LOWER",
+      "name": "Lower Amazon / Tapajós Basin",
+      "breakpoint_year": 2008,
+      "pettitt_p": 0.0001,
+      "optimal_driver": "ENSO_MEI",
+      "driver_r": -0.5486
+    },
+    {
+      "basin_id": "BASIN_SAO_FRANCISCO",
+      "name": "São Francisco River Basin",
+      "breakpoint_year": 2012,
+      "pettitt_p": 0.0001,
+      "optimal_driver": "ENSO_MEI",
+      "driver_r": -0.5064
+    },
+    {
+      "basin_id": "BASIN_YANGTZE",
+      "name": "Yangtze River Basin",
+      "breakpoint_year": 2014,
+      "pettitt_p": 0.0001,
+      "optimal_driver": "ENSO_MEI",
+      "driver_r": 0.3165
+    },
+    {
+      "basin_id": "BASIN_YELLOW_RIVER",
+      "name": "Yellow River (Huang He) Basin",
+      "breakpoint_year": 2013,
+      "pettitt_p": 0.0001,
+      "optimal_driver": "ENSO_MEI",
+      "driver_r": -0.2795
+    },
+    {
+      "basin_id": "BASIN_INDUS",
+      "name": "Indus River Basin",
+      "breakpoint_year": 2016,
+      "pettitt_p": 0.0001,
+      "optimal_driver": "ENSO_MEI",
+      "driver_r": 0.3359
+    },
+    {
+      "basin_id": "BASIN_GANGES_BRAHMAPUTRA",
+      "name": "Ganges-Brahmaputra Basin",
+      "breakpoint_year": 2012,
+      "pettitt_p": 0.0001,
+      "optimal_driver": "IOD_DMI",
+      "driver_r": 0.2928
+    },
+    {
+      "basin_id": "BASIN_CASPIAN",
+      "name": "Caspian Sea Basin",
+      "breakpoint_year": 2012,
+      "pettitt_p": 0.0001,
+      "optimal_driver": "IOD_DMI",
+      "driver_r": 0.2627
+    },
+    {
+      "basin_id": "BASIN_TIBETAN_PLATEAU",
+      "name": "Qinghai-Tibetan Plateau Basin",
+      "breakpoint_year": 2013,
+      "pettitt_p": 0.0001,
+      "optimal_driver": "ENSO_MEI",
+      "driver_r": -0.3706
+    },
+    {
+      "basin_id": "BASIN_CONGO",
+      "name": "Congo River Basin",
+      "breakpoint_year": 2015,
+      "pettitt_p": 0.0001,
+      "optimal_driver": "IOD_DMI",
+      "driver_r": 0.3369
+    },
+    {
+      "basin_id": "BASIN_SAHEL",
+      "name": "Sahel / Lake Chad Basin",
+      "breakpoint_year": 2012,
+      "pettitt_p": 0.0001,
+      "optimal_driver": "ENSO_MEI",
+      "driver_r": -0.2469
+    },
+    {
+      "basin_id": "BASIN_IOD_WEST",
+      "name": "Horn of Africa / Western IOD Basin",
+      "breakpoint_year": 2013,
+      "pettitt_p": 0.0001,
+      "optimal_driver": "IOD_DMI",
+      "driver_r": 0.3011
+    },
+    {
+      "basin_id": "BASIN_IOD_EAST",
+      "name": "Sumatra-Java / Eastern IOD Basin",
+      "breakpoint_year": 2012,
+      "pettitt_p": 0.0001,
+      "optimal_driver": "IOD_DMI",
+      "driver_r": -0.384
+    },
+    {
+      "basin_id": "BASIN_WEST_ANTARCTICA",
+      "name": "West Antarctic Ice Sheet / Amundsen Sea",
+      "breakpoint_year": 2013,
+      "pettitt_p": 0.0001,
+      "optimal_driver": "ENSO_MEI",
+      "driver_r": -0.3667
+    },
+    {
+      "basin_id": "BASIN_EAST_ANTARCTICA",
+      "name": "East Antarctic Plateau / Dronning Maud Land",
+      "breakpoint_year": 2013,
+      "pettitt_p": 0.0001,
+      "optimal_driver": "ENSO_MEI",
+      "driver_r": -0.2022
+    },
+    {
+      "basin_id": "BASIN_DANUBE",
+      "name": "Danube River Basin",
+      "breakpoint_year": 2017,
+      "pettitt_p": 0.0001,
+      "optimal_driver": "ENSO_MEI",
+      "driver_r": 0.2617
+    },
+    {
+      "basin_id": "BASIN_MURRAY_DARLING",
+      "name": "Murray-Darling Basin",
+      "breakpoint_year": 2010,
+      "pettitt_p": 0.0001,
+      "optimal_driver": "ENSO_MEI",
+      "driver_r": -0.344
+    },
+    {
+      "basin_id": "BASIN_MISSISSIPPI_UPPER",
+      "name": "Upper Mississippi River Basin",
+      "breakpoint_year": 2014,
+      "pettitt_p": 0.0002,
+      "optimal_driver": "ENSO_MEI",
+      "driver_r": 0.3374
+    },
+    {
+      "basin_id": "BASIN_RHINE",
+      "name": "Rhine River Basin",
+      "breakpoint_year": 2015,
+      "pettitt_p": 0.0001,
+      "optimal_driver": "IOD_DMI",
+      "driver_r": -0.2313
+    },
+    {
+      "basin_id": "BASIN_COLORADO",
+      "name": "Colorado River Basin",
+      "breakpoint_year": 2014,
+      "pettitt_p": 0.0001,
+      "optimal_driver": "IOD_DMI",
+      "driver_r": 0.3685
+    },
+    {
+      "basin_id": "BASIN_MISSISSIPPI_LOWER",
+      "name": "Lower Mississippi River Basin",
+      "breakpoint_year": 2015,
+      "pettitt_p": 0.0001,
+      "optimal_driver": "ENSO_MEI",
+      "driver_r": 0.3187
+    },
+    {
+      "basin_id": "BASIN_MISSOURI",
+      "name": "Missouri River Basin",
+      "breakpoint_year": 2008,
+      "pettitt_p": 0.0001,
+      "optimal_driver": "IOD_DMI",
+      "driver_r": 0.2391
+    },
+    {
+      "basin_id": "BASIN_OHIO",
+      "name": "Ohio River Basin",
+      "breakpoint_year": 2013,
+      "pettitt_p": 0.0001,
+      "optimal_driver": "ENSO_MEI",
+      "driver_r": 0.2957
+    },
+    {
+      "basin_id": "BASIN_COLUMBIA",
+      "name": "Columbia River Basin",
+      "breakpoint_year": 2017,
+      "pettitt_p": 0.0001,
+      "optimal_driver": "ENSO_MEI",
+      "driver_r": -0.2475
+    },
+    {
+      "basin_id": "BASIN_PARANA_LA_PLATA",
+      "name": "Paraná / La Plata Basin",
+      "breakpoint_year": 2020,
+      "pettitt_p": 0.0001,
+      "optimal_driver": "ENSO_MEI",
+      "driver_r": 0.452
+    },
+    {
+      "basin_id": "BASIN_VOLGA",
+      "name": "Volga River Basin",
+      "breakpoint_year": 2009,
+      "pettitt_p": 0.0001,
+      "optimal_driver": "NAO",
+      "driver_r": 0.252
+    },
+    {
+      "basin_id": "BASIN_TIGRIS_EUPHRATES",
+      "name": "Tigris-Euphrates Basin",
+      "breakpoint_year": 2008,
+      "pettitt_p": 0.0001,
+      "optimal_driver": "ENSO_MEI",
+      "driver_r": 0.3528
+    },
+    {
+      "basin_id": "BASIN_NILE",
+      "name": "Nile River Basin",
+      "breakpoint_year": 2013,
+      "pettitt_p": 0.0001,
+      "optimal_driver": "IOD_DMI",
+      "driver_r": 0.2158
+    },
+    {
+      "basin_id": "BASIN_NIGER",
+      "name": "Niger River Basin",
+      "breakpoint_year": 2012,
+      "pettitt_p": 0.0001,
+      "optimal_driver": "IOD_DMI",
+      "driver_r": 0.2255
+    }
+  ]
+}
