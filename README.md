@@ -26,6 +26,18 @@ Earth system time series are notoriously non-stationary, seasonally skewed, and 
 
 ---
 
+## 👥 Team
+
+A team of three, registered with the Singapore local event of the 2026 NASA Space Apps Challenge.
+
+| Member | Role | Affiliation |
+| :--- | :--- | :--- |
+| **Darren Seah Yong Liang** | AI Software Engineer | NCS Pte Ltd |
+| **Dave Seah Yong Sheng** | Visiting Researcher | Nanyang Technological University (NTU) |
+| **Danza Seah Ming Zhe** | Computer Science Graduate | National University of Singapore (NUS) |
+
+---
+
 ## 📸 Interface Tour
 
 *Screenshots of the current interface, taken on 15 November 2026 in a 1440 × 900 window. Click any image to see it at full size.*
