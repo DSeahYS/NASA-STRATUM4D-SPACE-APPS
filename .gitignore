@@ -36,3 +36,5 @@ scratch/
 
 # Repomix AI bundle
 repomix-output.*
+.vercel
+.env*

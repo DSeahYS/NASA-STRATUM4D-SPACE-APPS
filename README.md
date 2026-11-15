@@ -6,6 +6,12 @@
 [![Three.js WebGL](https://img.shields.io/badge/Three.js-Custom_GLSL_Shaders-000000?style=for-the-badge&logo=threedotjs&logoColor=white)](https://threejs.org/)
 [![Python Pipeline](https://img.shields.io/badge/Python_3.11+-STL_%7C_Yue--Pilon_%7C_FDR-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.scipy.org/)
 
+### 🔗 Live demo: [stratum-4d.vercel.app](https://stratum-4d.vercel.app)
+
+The app runs in the browser with no login and no API key.
+
+*Hosting note: we tried to redeem the free Space Apps domain from [spaceapps.earth](https://www.spaceapps.earth/), but the one-time passcode (OTP) email never arrived on any of the several email addresses we tried. The demo is therefore hosted on a Vercel address.*
+
 > **2026 NASA Space Apps Challenge Submission — *"Be An Earth System Trend Detective!"***  
 > **Stratum-4D** is a 4D spatiotemporal Earth system observatory and statistical hypothesis-testing workbench for 30 major global hydrological catchments over 132 bimonthly epochs (2002 to 2024). It is a student project, not an official NASA product.
 >
