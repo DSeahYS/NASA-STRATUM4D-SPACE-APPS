@@ -26,160 +26,105 @@ Earth system time series are notoriously non-stationary, seasonally skewed, and 
 
 ---
 
-## 📸 Interactive System Previews & Visual Evidence
+## 📸 Interface Tour
 
-*The screenshots below predate the November 2026 interface redesign, so layout, labels and some numbers differ from the current app.*
+*Screenshots of the current interface, taken on 15 November 2026 in a 1440 × 900 window. Click any image to see it at full size.*
 
-### 1. Tri-View 4D Planetary Architecture & Stratified Voxel Cutaway
+![The first screen of Stratum-4D](screenshots/workbench_first_screen.png)
 
-| 3D WebGL Planetary Digital Twin (`Globe.tsx`) | 4D Stratified Block Cutaway (`StratifiedBlockView.tsx`) |
-| :---: | :---: |
-| ![3D Globe View](screenshots/screenshot_causal_attribution_inspector.png) | ![2032 Voxel Consequences](screenshots/screenshot_voxel_consequences_2032.png) |
-| *3D catchment extrusion with real-time GLSL twilight terminator, atmospheric scattering, and causal attribution inspector* | *4D subsurface voxel cutaway modeling aquifer depletion, Terzaghi geomechanical compaction, and 2032–2035 infrastructure failure states* |
+*The first screen. The left panel holds the variable, the colour legend, the significance filter and the 30 regions, ranked by the size of their change. The globe sits in the middle with the timeline under it. The right panel answers the challenge's four questions for the selected region: **what** is changing, **where**, **how much**, and whether it is **significant**.*
 
 ---
 
-### 2. Teleconnection Dipoles, Custom Basin Pairing & Climate Oscillation Bands
+### 1. The answer first, in plain or technical words
 
-| Dual-Region Compare & Attribution Meter | Custom Dipole Pairing (`Shift + Click`) |
+| The same answer in Technical wording | An answer of "Not yet" |
 | :---: | :---: |
-| ![Dipole Compare View](screenshots/screenshot_dipole_view.png) | ![Custom Dipole Pairing](screenshots/screenshot_custom_dipole_pairing.png) |
-| *3-panel Dual Compare Inspector with Bivariate Phase Space, Partial Correlation Attribution Meter ($r_{AB \cdot \text{ENSO}}$), and Mirrored Butterfly ($\pm Z$) timeline* | *Interactive custom dipole pairing across any two global basins with live lag-correlation $\tau$ solver and teleconnection arc rendering* |
+| ![Answer panel in Technical wording](screenshots/answer_technical.png) | ![A basin whose trend is not significant](screenshots/answer_not_significant.png) |
+| *The **Plain \| Technical** switch in the right panel header changes the wording, not the numbers. Technical shows the Theil-Sen slope with its 95% CI, the Hamed-Rao corrected Mann-Kendall $Z$, the effective sample size $n^*$, the FDR $q$ value and the Pettitt break year* | *Lower Mississippi: $+0.27$ cm/yr with FDR $q = 0.078$. The app answers **Not yet** ("this could still be chance") and draws the basin hatched in grey. 3 of the 30 basins get this answer* |
 
 ---
 
-### 3. NASA POWER Virtual Station Probe (1984 to 2024) & Case 07 Field Investigation
+### 2. The statistics and the other variables, one click down
 
-| Global Coordinate Point Probe (`VirtualStationProbe.tsx`) | Case 07 Custom Coordinate Investigation |
+| Statistics (`InspectorStats.tsx`) | Other variables (`MultiSensorStack.tsx`) |
 | :---: | :---: |
-| ![Virtual Station Probe](screenshots/screenshot_virtual_station_probe.png) | ![Case 07 Virtual Probe](screenshots/screenshot_case_07_virtual_probe.png) |
-| *Click any un-basined land, ice, or ocean coordinate to trigger a live NASA POWER trend analysis for 1984 to 2024, Beaufort wind compass, and TOA solar insolation solver* | *Guided Case 07 workflow demonstrating ad-hoc hypothesis testing on arbitrary user-selected coordinates outside the 30 pre-compiled catchments* |
+| ![Statistics section](screenshots/inspect_statistics.png) | ![Other variables section](screenshots/inspect_other_variables.png) |
+| *Every statistic keeps a plain-language line under its technical name: Theil-Sen slope, 95% confidence interval, FDR $q$ (Benjamini-Hochberg), Mann-Kendall $Z$ (Hamed-Rao), $n^*$ and lag-1 autocorrelation, Pettitt change point, signal-to-noise ratio and time of emergence* | *The section opens by saying what is measured: 7 channels, 1 observed (GRACE / GRACE-FO), NASA POWER reanalysis, and modelled proxies. Each modelled level carries its own tag, such as "Modelled proxy from surface T2M (not AIRS)"* |
 
 ---
 
-### 4. Basin Screening Feed (`Sentinel`) & AI Summary Dossiers
+### 3. Three views of the same regions
 
-| Hypothesis Dossier (`TrendDetectiveAIModal.tsx`) | Basin Screening Sentinel (`AutonomousTriageSentinel.tsx`) |
+| 2D map (`AnalyticalMap2D.tsx`) | Subsurface view (`StratifiedBlockView.tsx`) |
 | :---: | :---: |
-| ![Trend Detective AI Modal](screenshots/screenshot_trend_detective_modal.png) | ![Case 07 Laya Sentinel](screenshots/screenshot_case_07_laya_sentinel.png) |
-| *Dossier with literature references, a consistency check across series, interactive Q&A (AI model or labelled template), and 1-click `.md` export* | *Screening feed separating significant trends from EONET events inside drying basins and from not-significant basins ($p_{\text{FDR}} \ge 0.05$)* |
+| ![2D map](screenshots/view_2d_map.png) | ![Subsurface view](screenshots/view_subsurface.png) |
+| *An equirectangular (EPSG:4326) map that shows all 30 basins at once, each with its trend in cm/yr, plus the arcs that join paired regions* | *A block cut-away of the aquifer layers and ground subsidence under one basin. It is tagged **Modelled illustration**, and its scenario figures are marked as not measured* |
 
 ---
 
-### 5. GPU GLSL $\Delta$-Anomaly Shader, Epoch Slicing & Climate Reference Bands
+### 4. A question-led start for newcomers
 
-| GPU GLSL Dual-Epoch $\Delta$-Anomaly Shader | Interactive Epoch Slicing & ENSO/IOD Bands |
+| Welcome card (`WelcomeCard.tsx`) | Start with a question (`DetectiveIntakeWizard.tsx`) |
 | :---: | :---: |
-| ![Epoch Delta Anomaly](screenshots/screenshot_epoch_delta_anomaly.png) | ![Epoch Slicing Inspector](screenshots/screenshot_epoch_slicing_inspector.png) |
-| *Real-time GLSL fragment shader subtracting 2003 baseline satellite rasters from modern epochs to isolate secular drying and warming deltas* | *Dynamic sub-window epoch brush (`[t_0, t_1]`) with synchronized El Niño / La Niña phase bands overlaid on the 7-channel sensor stack* |
+| ![Welcome card](screenshots/start_welcome_card.png) | ![Start with a question](screenshots/start_question_wizard.png) |
+| *First load offers three ways in: **Start with a question**, **Watch the demo (90s)** or **Explore on my own*** | *Three short questions (region type, what is changing, time window) set up the map, the variable and the time window. Published studies (Famiglietti et al. 2011, Rodell et al. 2009 and 2018) fill in all three steps at once; Case 07 is tagged **Curated scenario*** |
 
 ---
 
-### 6. 2035 Planetary Water Budget & Global Spatial Command Palette (`Cmd+K`)
+### 5. Guided tour and 90-second demo
 
-| 2035 Planetary Water Budget Fan Chart | Omnibox Spatial Command Palette (`OmniboxSearch.tsx`) |
+| Guided tour, 12 lessons (`GuidedDetectiveTour.tsx`) | 90-second demo, 8 scenes |
 | :---: | :---: |
-| ![Planetary Water Budget](screenshots/screenshot_planetary_water_budget.png) | ![Omnibox Search](screenshots/screenshot_omnibox_search.png) |
-| *Linear extrapolation of each catchment's Theil-Sen trend to 2035 with a Theil-Sen confidence band, and Weatherhead emergence horizons* | *Instant `Cmd+K` search across 30 basins, 7 investigation case files, global cities/landmarks, and raw `lat, lon` coordinates* |
+| ![Guided tour](screenshots/learn_guided_tour.png) | ![90-second demo](screenshots/learn_demo.png) |
+| *Each lesson says where to look on screen, gives the core relation, sets a small task and ends with a quick check. Open it from **Learn > Guided tour*** | *An automatic walk through 3D relief, the seasons removed, the 2D map, paired regions and the subsurface view, with jump buttons for each scene. Open it from **Learn > Watch the demo*** |
 
 ---
 
-### 7. Startup Visual HUD Guide & 90-Second Full Mission Walkthrough
+### 6. Interface map and case studies
 
-| Startup Visual HUD Guide (`StartupOnboardingOverlay.tsx`) | 90-Second Full Mission Walkthrough HUD (`GuidedDetectiveTour.tsx`) |
+| Interface map (`StartupOnboardingOverlay.tsx`) | Case studies (`CaseFilesModal.tsx`) |
 | :---: | :---: |
-| ![Startup Onboarding Overlay](screenshots/screenshot_onboarding_overlay.png) | ![90-second Walkthrough HUD](screenshots/screenshot_90s_walkthrough_hud.png) |
-| *Startup Visual Guide Overlay rendering 6 directional dashed SVG arrows with colored markers pointing to each HUD zone, recallable anytime from **Learn > Interface map** (screenshot predates the redesigned shell)* | *Automated 8-scene (S1–S8), 90-second demonstration tour stepping through 3D relief, deseasonalization, 2D map, dipoles, and 4D voxel strata with interactive jump pills* |
+| ![Interface map](screenshots/learn_interface_map.png) | ![Case studies](screenshots/case_studies.png) |
+| *What each part of the screen is for, from the top bar to the right panel. Open it at any time from **Learn > Interface map*** | *7 curated cases, each laid out as the four questions. Explanations are worded as hypotheses, and the text says where the app does not test them. Open it from **Tools > Case studies*** |
 
 ---
 
-### 8. Unoccluded 2D Analytical Twin & 3D Volumetric Extrusion
+### 7. Compare two regions, or all thirty
 
-| 2D Analytical Map Twin (Zero Occlusion) | 3D Planetary Relief Extrusion |
+| Compare two regions (`DualCompareInspector.tsx`) | Compare all basins (`UltimateDashboard.tsx`) |
 | :---: | :---: |
-| ![2D Analytical Map](screenshots/screenshot_2d_analytical_map.png) | ![3D Relief Extrusion](screenshots/screenshot_3d_relief_extrusion.png) |
-| *Equirectangular EPSG:4326 analytical map showing all 30 basins simultaneously with unoccluded dipole Bézier arcs, IPCC $p \ge 0.05$ hatching, and vertical $90^\circ\text{N}–90^\circ\text{S}$ Zonal Mean profile* | *Three.js WebGL globe with catchment polygons extruded proportional to $\lVert\beta_{\text{Sen}}\rVert$, GFS dynamic wind streamlines, and new responsive 2-tier bottom dock* |
+| ![Compare two regions](screenshots/compare_pair.png) | ![Compare all basins](screenshots/compare_all_basins.png) |
+| *Yangtze and Yellow River, one of the 3 preset pairs whose trends have opposite signs. Each region gets its own Theil-Sen trend and Mann-Kendall $Z$; the middle column shows how the two move together, $r(A,B)$, and the partial correlation once ENSO (MEI) or the Indian Ocean Dipole (DMI) is controlled for* | *15 basins drying, 12 wetting and 3 not significant, with the trends ranked by basin and plotted against Mann-Kendall $Z$. Colour follows the FDR result, not the uncorrected $Z = \pm 1.96$ line. Open it from **Tools > Compare all basins*** |
 
 ---
 
-### 9. Vertical Atmospheric Profiling & Ecological 2D Phase Portrait
+### 8. Probe any point, search anything
 
-| Vertical Atmospheric Pressure Levels (1000–250 hPa) | Ecological Attractor Phase Space (`2D Attractor`) |
+| Point probe, NASA POWER 1984 to 2024 (`VirtualStationProbe.tsx`) | Search (`OmniboxSearch.tsx`) |
 | :---: | :---: |
-| ![Vertical Pressure Gauge](screenshots/screenshot_vertical_pressure_gauge.png) | ![Ecological Phase Portrait](screenshots/screenshot_ecological_phase_portrait.png) |
-| *Atmospheric Pressure Gauge contrasting boundary warming against $250\text{ hPa}$ tropopause cooling with greenhouse forcing badge and 3-tier provenance pills* | *2D state space trajectory (GRACE $\Delta\text{TWS}$ vs. modelled $\text{NDVI}$ proxy) with Early/Modern $1\sigma$ covariance ellipses showing whether the two epochs overlap* |
+| ![Point probe](screenshots/probe_point.png) | ![Search](screenshots/search_palette.png) |
+| *Click any spot outside the 30 basins and the app fetches 41 years of monthly NASA POWER data for it, then runs Theil-Sen and Hamed-Rao corrected trend tests in the browser. This point is in the open Pacific (20.86°N, 144.40°W), where the temperature change is within natural variability* | *`Ctrl K` (or `Cmd K`) searches regions, places and commands. Choosing a result flies the globe there* |
 
 ---
 
-### 10. Prompt Biome Archetypes & Event-in-Drying-Basin Alerts
+### 9. Draw an area, ask the analyst
 
-| Expanded Biome Archetypes & Barystatic Sea-Level Ledger | Sentinel Event Alerts & Not-Significant Tabs |
+| Region select (`GISAnalysisPanel.tsx`) | Ask the analyst (`TrendDetectiveAIModal.tsx`) |
 | :---: | :---: |
-| ![Biome Ledger Expanded](screenshots/screenshot_biome_ledger_expanded.png) | ![Laya Sentinel Compound Alerts](screenshots/screenshot_laya_sentinel_compound.png) |
-| *Expanded left drawer showing Biome Archetype catchment counts, 3D relief legend, and net Barystatic Global Mean Sea Level ($+\text{mm/yr}$ GMSL) ledger* | *Sentinel feed flagging NASA EONET v3 wildfires/droughts inside depleting basins and listing basins with $p_{\text{FDR}} \ge 0.05$ as not significant* |
+| ![Region select](screenshots/region_select_box.png) | ![Ask the analyst](screenshots/ask_analyst.png) |
+| *Drag a box on the map. The panel counts the regions it touches (3 wetting regions here), adds up their estimated annual water-storage change and gives the box's WGS84 bounds* | *A dossier built from the shipped statistics, tagged **Hypotheses, not proof** and **Template summary (no AI model connected)**. Possible explanations are tagged **Not tested**, the data sources are listed as observed, reanalysis or modelled proxy, and the dossier exports to Markdown* |
 
 ---
 
-### 11. Educational Usability & CUAHSI Hydrology Standards
+### 10. NASA GIBS imagery layers on the globe
 
-| Student / Plain-English Mode & Variable Guide | CUAHSI Flow Duration Curve & Water Year CSV |
-| :---: | :---: |
-| ![Student Mode](screenshots/screenshot_student_mode.png) | ![CUAHSI Flow Duration](screenshots/screenshot_cuahsi_flow_duration.png) |
-| *Student Mode toggle translating complex geophysics into 1-sentence explanations alongside an interactive 12-variable educational guide* | *CUAHSI Water Year (WY: Oct 1 – Sep 30) convention mode, Weibull streamflow exceedance frequency $P(Q \ge q)$, and 1-Click HydroClient CSV export* |
+| Rainfall (GPM IMERG) | Land temperature (VIIRS) | Water storage map (GRACE / GRACE-FO) |
+| :---: | :---: | :---: |
+| ![Rainfall layer](screenshots/layer_rainfall.png) | ![Land temperature layer](screenshots/layer_land_temperature.png) | ![Water storage layer](screenshots/layer_grace_water_storage.png) |
+| *Precipitation rate, 0.1 to more than 25 mm/h* | *Daytime land surface temperature, −20 to +50 °C* | *Equivalent water thickness anomaly, −20 to +20 cm* |
 
----
-
-### 12. Dual Estimator Rigor & Weatherhead Observation Horizon
-
-| Catchment Inspector: Dual Estimator (OLS vs. Theil-Sen) | Observation Horizon on Emerging Trends ($p \ge 0.05$) |
-| :---: | :---: |
-| ![Dual Estimator Inspector](screenshots/screenshot_inspector_dual_estimator.png) | ![Observation Horizon Danube](screenshots/screenshot_observation_horizon.png) |
-| *Side-by-side rigor: Non-Parametric Theil-Sen slope & Hamed-Rao $Z$ vs. Parametric OLS slope, $SE(\beta)$, Student's $t$, and $p_t$ value across 7 variables* | *Weatherhead trend emergence calculation computing required $N^*$, Autocorrelation VIF, and $+\Delta t$ years needed to emerge above internal climate noise* |
-
----
-
-### 13. Detective Intake Wizard & Literature Recommendations
-
-| 3-Step Detective Intake Wizard | Peer-Reviewed Research Case Files Modal |
-| :---: | :---: |
-| ![Detective Intake Wizard](screenshots/screenshot_detective_intake_wizard.png) | ![Research News Recommendations](screenshots/screenshot_case_files_modal.png) |
-| *Hypothesis formulation: Q1 Biome $\rightarrow$ Q2 Symptom $\rightarrow$ Q3 Timeframe, ranking candidate hotspots by trend magnitude and FDR confidence* | *Curated landmark research presets (Famiglietti 2011, Rodell 2018, and the illustrative Case 07 peat-smoke scenario) auto-populating target regions and mission sensors* |
-
----
-
-### 14. Atmospheric Sounder Imagery & GIS AOI Lasso
-
-| Case File #07 (illustrative scenario): SE Asia 5,500m CO Plume | GIS Analysis & Distortion-Free AOI Lasso |
-| :---: | :---: |
-| ![Case 07 Plume](screenshots/screenshot_case_07_airs_co_plume.png) | ![GIS Analysis AOI Lasso](screenshots/screenshot_gis_analysis_aoi.png) |
-| *NASA Aqua AIRS mid-tropospheric ($500\text{ hPa} / 5,500\text{m}$) CO imagery with GFS wind streamlines. For any 2026 date the app shows archive AIRS imagery from 14 October 2015, as an illustration* | *Screen/geographic bounding box lasso calculating spherical surface area ($\text{km}^2$) and regional mass balance flux without projection distortion* |
-
----
-
-### 15. NASA GIBS Satellite Rasters: Thermal Stress & GPM IMERG Precipitation
-
-| NOAA-20 VIIRS Land Surface Temperature | NASA GPM IMERG Precipitation Rate |
-| :---: | :---: |
-| ![Surface Temperature](screenshots/screenshot_layer_surface_temp.png) | ![Precipitation](screenshots/screenshot_layer_precipitation.png) |
-| *Daytime radiometric skin temperature showing planetary thermal anomalies and drought heating with a calibrated $-20^\circ\text{C}$ to $+50^\circ\text{C}$ colorbar* | *GPM IMERG combined microwave-infrared global precipitation rate ($0.1–25+\text{ mm/hr}$) mapped onto the 3D planetary twin with real-time temporal snapping* |
-
----
-
-### 16. Planetary Biosphere & Mass Anomalies: MODIS NDVI imagery & GRACE Gravimetry
-
-| MODIS Terra 8-Day Vegetation Index (NDVI) | GRACE / GRACE-FO Liquid Water Equivalent Thickness |
-| :---: | :---: |
-| ![NDVI](screenshots/screenshot_layer_ndvi.png) | ![GRACE EWT](screenshots/screenshot_layer_grace_ewt.png) |
-| *Photosynthetic canopy density ($0.0\text{ barren}–1.0\text{ dense forest}$) tracing global biome greening, agricultural cycles, and phenological stress* | *Liquid Water Equivalent thickness anomaly ($-20\text{ to }+20\text{ cm}$ of water thickness) showing aquifer depletion, ice sheet mass loss, and terrestrial water storage shifts* |
-
----
-
-### 17. Atmospheric Sounders & Column Trace Gas Dynamics (Aura OMI NO₂ & Aqua AIRS CO)
-
-| Aura OMI Tropospheric Nitrogen Dioxide Column | GPU GLSL Dual-Epoch $\Delta$-Anomaly Pixel Differencing |
-| :---: | :---: |
-| ![Aura OMI NO2](screenshots/screenshot_layer_omi_no2.png) | ![GPU Delta Anomaly](screenshots/screenshot_epoch_delta_anomaly.png) |
-| *Tropospheric $\text{NO}_2$ column density ($0–20\times 10^{15}\text{ molec/cm}^2$) capturing industrial fossil emissions, megacity plumes, and regional biomass burning* | *GLSL fragment shader differencing modern satellite rasters against the 2003 baseline in real-time, isolating secular planetary drying and warming signatures* |
+*The **Variable** menu draws NASA GIBS imagery over the globe, and the left panel shows the layer's name, its imagery date and its colour scale. The layers are imagery only; the charts and statistics do not use them.*
 
 ---
 
@@ -198,7 +143,7 @@ Every basin time series $Y_t$ ($t = 1, \dots, 132$ bimonthly epochs from April 2
 4. **Dual Estimator Slope Comparison (Theil-Sen $\beta_{\text{Sen}}$ vs. OLS $\beta_{\text{OLS}}$):** Computes the non-parametric median pairwise slope $\beta_{\text{Sen}} = \text{median}\left(\frac{x_j - x_i}{t_j - t_i}\right)$ alongside the parametric OLS slope and $t$-test, showing how much outliers (such as extreme ENSO droughts or floods) change the OLS result.
 5. **Pettitt (1979) Structural Break & Weatherhead (1998) Horizon:** Identifies the exact month $t_{\text{break}}$ of non-stationary regime shifts via the Mann-Whitney $U_{t,T}$ statistic and computes the **Weatherhead Detection Horizon** ($T_{\text{detect}}$, in years) required for a trend of magnitude $\vert{}\beta\vert{}$ to emerge above residual noise $\sigma_N$ and autocorrelation $\phi$:
    $$T_{\text{detect}} \approx \left( \frac{3.3 \, \sigma_N}{\vert{}\beta\vert{}} \sqrt{\frac{1+\phi}{1-\phi}} \right)^{2/3}$$
-6. **Benjamini-Hochberg (1995) Global False Discovery Rate (`FDR`):** Controls family-wise false discoveries across all 30 simultaneous basin tests by ranking raw $p$-values $p_{(1)} \le p_{(2)} \le \dots \le p_{(m)}$ and enforcing $p_{(k)} \le \frac{k}{m}\alpha$ ($\alpha = 0.05$). Engaging the **FDR Significance Lock** in the top HUD automatically hatches and dims basins where $p_{\text{FDR}} \ge 0.05$.
+6. **Benjamini-Hochberg (1995) Global False Discovery Rate (`FDR`):** Controls family-wise false discoveries across all 30 simultaneous basin tests by ranking raw $p$-values $p_{(1)} \le p_{(2)} \le \dots \le p_{(m)}$ and enforcing $p_{(k)} \le \frac{k}{m}\alpha$ ($\alpha = 0.05$). Basins where $p_{\text{FDR}} \ge 0.05$ are drawn hatched in grey, and the significance filter in the left panel (**All**, **Significant**, **Strong**) switches between every basin and the ones that pass.
 
 ---
 
@@ -221,13 +166,13 @@ Stratum-4D separates observed, reanalysis and modelled series with provenance ba
 | **Evapotranspiration, runoff** | Estimated in the browser, balanced as $dS/dt = P - ET - Q$ | **Modelled proxy** | $\text{mm/month}$ |
 
 * **Vertical Atmospheric Pressure Level Gauge (`1000` / `850` / `500` / `250 hPa`):** Switching pressure levels in the right inspector reveals vertical thermodynamic structure—showing a lapse-rate and trend-scaling model of how lower-tropospheric warming (`1000–500 hPa`) can coincide with tropopause cooling (`250 hPa`). The levels above the surface are modelled, not measured.
-* **CUAHSI Flow Duration Curve (`FDC`) & Student Mode:** Toggle between temporal ribbons, exceedance probability curves ($Q_{90}, Q_{50}, Q_{10}$), and plain-language pedagogical explanations.
+* **CUAHSI Flow Duration Curve (`FDC`) and plain wording:** Under **Other variables**, toggle between time series and exceedance probability curves ($Q_{90}, Q_{50}, Q_{10}$). The **Plain | Technical** switch in the right panel header sets whether labels use everyday words or the statistical terms, and a variable guide explains the 12 variables and metrics.
 
 ---
 
 ### 3. Teleconnection Dipoles & Shared Process Attribution Meter (`DualCompareInspector.tsx`)
 
-Selecting any preset climatic dipole (e.g., **Amazon vs. Congo**, **Indus vs. Ganges**, **Murray-Darling vs. Mekong**) or `Shift + Clicking` any two basins on the globe opens the **Dual-Region Compare Inspector**:
+Selecting any of the 8 preset pairs (e.g., **Lower Amazon vs. São Francisco**, **Yangtze vs. Yellow River**, **Indus vs. Ganges-Brahmaputra**) or `Shift + Clicking` any two basins on the globe opens the **Dual-Region Compare Inspector**. Only 3 of the 8 preset pairs have trends of opposite sign, and the app tags each pair **Opposite signs** or **Same sign**:
 
 * **Bivariate Phase Space & Regression Ellipse:** Plots Basin A ($X$) against Basin B ($Y$) colored by chronological epoch to expose in-phase vs. anti-phase dipole lockstep.
 * **Shared Process Attribution Meter:** Computes the lagged cross-correlation against **NOAA ENSO MEI.v2** and **IOD DMI** ($\tau = 0\text{--}12\text{ months}$) and solves the first-order partial correlation:
@@ -260,8 +205,8 @@ Clicking **any coordinate on Earth** outside the 30 pre-compiled catchments laun
 
 ### 6. Ecological 2D Phase Portrait & Barystatic Sea-Level Fingerprint
 
-* **Ecological Attractor Phase Portrait (`EcologicalPhasePortrait.tsx`):** Plots multi-decadal trajectories in 2D hydro-ecological state space (`GRACE LWE` vs. the modelled `NDVI` proxy), partitioned into Early (`2002–2009`, Indigo), Mid (`2010–2016`, Teal), and Modern (`2017–2024`, Gold) epochs with $1\sigma$ covariance ellipses. Non-overlapping early and modern ellipses trigger a **`REGIME ATTRACTOR SHIFT CONFIRMED`** badge.
-* **Barystatic Global Mean Sea Level (`GMSL`) Ledger (`EarthClassSidebar.tsx`):** Converts continental terrestrial water storage loss ($\text{Gt/yr}$ across all 30 catchments, where $361.8\text{ Gt} \equiv 1\text{ mm GMSL}$) into its direct barystatic sea-level contribution (`+mm/yr GMSL`), alongside interactive filtering by **Prompt Biome Archetypes** (Arid/Groundwater, Monsoon/Snowmelt, Tropical Rainforest, Permafrost/Boreal, Temperate Agricultural).
+* **Ecological Attractor Phase Portrait (`EcologicalPhasePortrait.tsx`):** Plots multi-decadal trajectories in 2D hydro-ecological state space (`GRACE LWE` vs. the modelled `NDVI` proxy), partitioned into Early (`2002–2009`, Indigo), Mid (`2010–2016`, Teal), and Modern (`2017–2024`, Gold) epochs with $1\sigma$ covariance ellipses. When the early and modern ellipses do not overlap, the panel says "Early and recent periods do not overlap".
+* **Barystatic Global Mean Sea Level (`GMSL`) Ledger (`EarthClassSidebar.tsx`):** Converts continental terrestrial water storage loss ($\text{Gt/yr}$ across all 30 catchments, where $361.8\text{ Gt} \equiv 1\text{ mm GMSL}$) into its direct barystatic sea-level contribution (`+mm/yr GMSL`), shown as a rough sea-level equivalent under **Water balance across all regions** in the left panel, next to a landscape-type filter (Arid/Groundwater, Monsoon/Snowmelt, Tropical Rainforest, Permafrost/Boreal, Temperate Agricultural).
 
 ---
 
@@ -331,13 +276,14 @@ Stratum-4D/
 │   │   ├── summary.json             # Global aggregation metadata, regime shifts & dipole configs
 │   │   └── wind.json                # GFS / MERRA-2 10m surface wind vector field
 │   └── textures/                    # NASA Blue Marble (Day) & Black Marble (Night) textures
-├── screenshots/                     # 43 high-resolution application screenshots & verification receipts
+├── docs/                            # Planning notes and the list of NASA APIs and data links
+├── screenshots/                     # 22 screenshots of the current interface (see the Interface Tour above)
 ├── src/
 │   ├── components/
 │   │   ├── Globe.tsx                # Three.js + Custom GLSL 3D planetary digital twin
 │   │   ├── globeShaders.ts          # GLSL twilight terminator, Δ-anomaly & significance hatching shaders
 │   │   ├── AnalyticalMap2D.tsx      # Unoccluded 2D Equirectangular map with dipole arcs & zonal profile
-│   │   ├── StartupOnboardingOverlay.tsx # Startup visual HUD guide overlay with directional SVG arrows
+│   │   ├── StartupOnboardingOverlay.tsx # Interface map dialog (Learn > Interface map)
 │   │   ├── GuidedDetectiveTour.tsx  # 12-lesson interactive curriculum & 8-scene 90s walkthrough
 │   │   ├── DetectiveIntakeWizard.tsx # 3-step question-driven hypothesis intake wizard & paper presets
 │   │   ├── StratifiedBlockView.tsx  # 4D stratified voxel cutaway & 2035 infrastructure simulator
@@ -345,7 +291,7 @@ Stratum-4D/
 │   │   ├── VirtualStationProbe.tsx  # NASA POWER point probe (1984 to 2024), marine VPD & solar insolation solver
 │   │   ├── AutonomousTriageSentinel.tsx # Basin screening replay, AI summary console & EONET event alerts
 │   │   ├── UltimateDashboard.tsx    # 5-tab mission control analytics console & rolling window brush
-│   │   ├── MultiSensorStack.tsx     # 7-channel sensor stack, 1000–250 hPa gauge, Student Mode & CUAHSI FDC
+│   │   ├── MultiSensorStack.tsx     # 7-channel sensor stack, 1000–250 hPa gauge, variable guide & CUAHSI FDC
 │   │   ├── EcologicalPhasePortrait.tsx # 2D phase space attractor trajectories & 1σ covariance ellipses
 │   │   ├── TriangulationBadges.tsx  # 0–100 heuristic consistency score & possible human-driven decline alert
 │   │   ├── EarthClassSidebar.tsx    # Prompt biome archetypes filter & Barystatic Sea-Level (GMSL) ledger
@@ -356,7 +302,7 @@ Stratum-4D/
 │   │   ├── AnswerPanel.tsx          # Answer-first summary: what, where, how much, significant
 │   │   ├── RegionTrendChart.tsx     # The one trend chart: series, Theil-Sen line, CI band, break year, GRACE gap
 │   │   ├── shell/                   # App shell: header, Learn and Tools menus, left panel, timeline, map options, dialogs
-│   │   └── OmniboxSearch.tsx        # Cmd+K global spatial command palette (basins, cases, cities, coords)
+│   │   └── OmniboxSearch.tsx        # Ctrl/Cmd+K search palette (basins, cases, cities, coords)
 │   ├── lib/
 │   │   ├── statistics.ts            # Theil-Sen, OLS t-test, Hamed-Rao, Pettitt, Weatherhead horizon, FDR
 │   │   ├── scientificLiterature.ts  # Curated peer-reviewed publications database with DOIs
@@ -370,9 +316,9 @@ Stratum-4D/
 │   │   ├── solar.ts                 # Astronomical subsolar point, declination & equation of time solver
 │   │   ├── wind.ts                  # Bilinear wind field sampler, zonal anomaly & particle advection
 │   │   └── geo.ts                   # Spherical Slerp, triangle subdivision & point-in-polygon math
-│   ├── App.tsx                      # Main orchestrator, Tri-View HUD switcher & URL deep-link sync
+│   ├── App.tsx                      # Main orchestrator, three-view switcher & URL deep-link sync
 │   ├── main.tsx                     # Application entry point
-│   └── index.css                    # Aerospace carbon dark HUD & glassmorphism styling
+│   └── index.css                    # Design tokens (colour, type), Inter font, shared button, chip & menu classes
 ├── .env.example                     # Optional OpenRouter token template
 ├── vite.config.ts                   # Vite configuration with env token injection
 └── package.json                     # Dependencies & scripts
