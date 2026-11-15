@@ -18,7 +18,8 @@ The app runs in the browser with no login and no API key.
 > **What is real data, and what is not.** One series is **observed**: GRACE / GRACE-FO terrestrial water storage (JPL RL06.1M mascons). Three series are **reanalysis** from NASA POWER (MERRA-2): temperature, precipitation and root-zone soil moisture (vapour pressure deficit is derived from them; soil moisture for the Caspian and both Antarctic basins is a synthetic fill). Everything else in the sensor stack is a **modelled proxy** and is tagged as such in the app: NDVI, ground subsidence, surface water elevation, upper-air temperature levels, NO2 / CO values and the water-balance terms (evapotranspiration, runoff). The six NASA GIBS layers on the globe are real imagery; the app also reads live NASA EONET events and a NASA POWER point probe for 1984 to 2024. The statistics separate secular trends from autocorrelated internal variability and false-discovery noise.
 >
 > **Shipped result:** 27 of the 30 basins have a significant trend at FDR q < 0.05 (15 drying, 12 wetting); 3 are not significant.
-
+> AI & Generative Tool Disclosure
+In compliance with NASA Space Apps Challenge guidelines, the team discloses that a majority of the application codebase (React/TypeScript frontend components, Three.js/GLSL shader scaffolding, and Python statistical pipeline scripts) was generated and refactored with the assistance of Anthropic Claude and Google Gemini.
 ---
 
 ## 🎯 Executive Summary & Rubric Alignment
