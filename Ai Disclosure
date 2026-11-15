@@ -1,0 +1,28 @@
+# AI-Generated Content & Code Disclosure Declaration
+
+**Project Name:** STRATUM-4D  
+**Event:** 2026 NASA Space Apps Challenge  
+**Challenge:** Be An Earth System Trend Detective!  
+**Live Deployment:** https://stratum-4d.vercel.app  
+**Declaration Date:** November 15, 2026  
+
+## 1. Executive Summary of AI Usage
+In accordance with the NASA Space Apps Challenge Participant Terms and Conditions regarding AI-generated audio, code, or data, the **STRATUM-4D** team declares that **a majority of the source code in this repository was generated, scaffolded, and refactored using Large Language Models (LLMs), specifically Anthropic Claude and Google Gemini.** 
+
+All domain formulation, statistical pipeline design, dataset selection, and scientific verification were performed by the human team. No NASA observational or reanalysis data was synthetically generated or altered by AI.
+
+## 2. Breakdown by Component & Asset Type
+
+| Project Component | AI Tools Used | Scope of AI Contribution | Human Oversight & Verification |
+| :--- | :--- | :--- | :--- |
+| **Frontend Application & UI** (`React 19`, `TypeScript`, `Tailwind CSS`) | Anthropic Claude, Google Gemini | Majority of component scaffolding, state management, responsive UI layout, and Recharts data-binding boilerplate. | Human-designed UX flows, accessibility standards, and multi-view synchronization. |
+| **3D/2D Visualization & Shaders** (`Three.js`, `WebGL`, `GLSL`) | Anthropic Claude, Google Gemini | Majority of custom GLSL vertex/fragment shader code, 3D globe geometry setup, and subsurface cutaway rendering logic. | Human-directed visual mappings, basin coordinate verification, and performance tuning. |
+| **Statistical Pipeline** (`Python`, `SciPy`, `statsmodels`, `TypeScript`) | Anthropic Claude, Google Gemini | Implementation code for STL decomposition, Yue-Pilon pre-whitening, Hamed-Rao Mann-Kendall, Theil-Sen slopes, Benjamini-Hochberg FDR, and client-side NASA POWER probe statistics. | Human selection of hydroclimatic methodologies; outputs cross-checked against reference statistical packages and published basin trends. |
+| **Documentation & Project Text** | Google Gemini, Anthropic Claude | Drafting and editing assistance for technical documentation, API catalogs, and submission summaries. | Human-authored core findings, architectural specifications, and scientific claims. |
+| **In-App Optional Summaries** (Runtime) | OpenRouter API (Optional) | Optional dynamic plain-language basin summaries when triggered by the user. | Clearly badged as `AI-Generated` in the UI alongside deterministic template summaries. |
+| **Earth Science Data** | **None (0% AI)** | **No AI generation.** All core datasets (NASA GRACE/GRACE-FO, NASA POWER, GIBS, EONET, NOAA indices) are authentic agency records. | Explicitly labeled in-app as `Observed`, `Reanalysis`, `Satellite Imagery`, or `Modelled Proxy`. |
+
+## 3. Compliance & Scientific Integrity Statement
+1. **No Synthetic Earth Science Data:** AI tools were strictly prohibited from fabricating, interpolating, or altering raw NASA Earth observation time series or statistical test outputs.
+2. **Transparent UI Labeling:** Where mathematical models or illustrative proxies are used (such as the subsurface cutaway or post-2024 straight-line trend projections), they are explicitly labeled in the interface so users never confuse an illustration with a satellite measurement.
+3. **Human Accountability:** Every module generated via Claude or Gemini was reviewed, integrated, tested, and validated by the team prior to deployment.
